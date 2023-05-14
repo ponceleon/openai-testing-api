@@ -25,49 +25,49 @@ app = Flask(__name__)
 def index():
     form_html = """
         <!DOCTYPE html>
-        <html>
-        <head>
-            <title>Prueba piloto de integración con OpenAI para modelos de conocimiento personalizados.</title>
-            <script src="https://cdn.tailwindcss.com"></script>
-        </head>
-        <body>
-            <div class="bg-gray-950 min-h-screen flex flex-col justify-center items-center">
-                <form class="w-full max-w-3xl bg-slate-800 p-8 rounded-lg">
-                <div class="flex flex-wrap -mx-3 mb-6">
-                    <div class="w-full px-3">
-                    <label class="block uppercase tracking-wide text-gray-100 text-xs font-bold mb-2" for="question">
-                        Ingrese su pregunta:
-                    </label>
-                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="question" type="text" placeholder="¿Que deseas preguntar?">
-                    </div>
-                </div>
-                <div class="flex justify-center">
-                    <button class="bg-white hover:bg-gray-500 text-black font-bold py-2 px-4 rounded" onclick="sendQuestion()">
-                        Enviar pregunta
-                    </button>
-                </div>
-                </form>
-                <div class="w-full max-w-3xl p-8 rounded-lg mt-8">
-                    <p class="text-gray-100">Su respuesta Aqui:</p>
-                    <div id="respuesta"></div>
+    <html>
+    <head>
+        <title>Prueba piloto de integración con OpenAI para modelos de conocimiento personalizados.</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+    </head>
+    <body>
+        <div class="bg-gray-950 min-h-screen flex flex-col justify-center items-center">
+            <form class="w-full max-w-3xl bg-slate-800 p-8 rounded-lg">
+            <div class="flex flex-wrap -mx-3 mb-6">
+                <div class="w-full px-3">
+                <label class="block uppercase tracking-wide text-gray-100 text-xs font-bold mb-2" for="question">
+                    Ingrese su pregunta:
+                </label>
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="question" type="text" placeholder="¿Que deseas preguntar?">
                 </div>
             </div>
+            <div class="flex justify-center">
+                <button class="bg-white hover:bg-gray-500 text-black font-bold py-2 px-4 rounded" type="button" onclick="sendQuestion()">
+                    Enviar pregunta
+                </button>
+            </div>
+            </form>
+            <div class="w-full max-w-3xl p-8 rounded-lg mt-8">
+                <p class="text-gray-100">Su respuesta Aqui:</p>
+                <div id="respuesta"></div>
+            </div>
+        </div>
 
-            <script>
-                function sendQuestion() {
-                    var question = document.getElementById("question").value;
-                    var xhttp = new XMLHttpRequest();
-                    xhttp.onreadystatechange = function() {
-                        if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("respuesta").innerHTML = this.responseText;
-                        }
-                    };
-                    xhttp.open("GET", "/answer?question=" + question, true);
-                    xhttp.send();
-                }
-            </script>
-        </body>
-        </html>
+        <script>
+            function sendQuestion() {
+                var question = document.getElementById("question").value;
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("respuesta").innerHTML = this.responseText;
+                    }
+                };
+                xhttp.open("GET", "/answer?question=" + question, true);
+                xhttp.send();
+            }
+        </script>
+    </body>
+    </html>
     """
     return form_html
 
