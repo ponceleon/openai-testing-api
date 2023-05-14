@@ -93,7 +93,8 @@ def index():
         <div class="bg-gray-950 min-h-screen flex flex-col justify-center items-center">
             <div class="flex items-center p-2">
                 <h1 class="inline-block text-2xl sm:text-3xl text-center font-extrabold text-gray-100 tracking-tight">Preguntame sobre la <br>
-                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=186812" target="_blank"> LEY 2208 DEL 17 DE MAYO DE 2022 </a>
+                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=186812" target="_blank"> LEY 2208 DEL 17 DE MAYO DE 2022 (CO) </a>
+                    
                 </h1>
             </div>
             <form class="w-full max-w-3xl bg-slate-800 p-8 rounded-lg">
@@ -106,7 +107,7 @@ def index():
                 </div>
             </div>
             <div class="flex justify-center">
-                <button class="bg-white hover:bg-gray-500 text-black font-bold py-2 px-4 rounded" type="button" onclick="sendQuestion()">
+                <button class="bg-white hover:bg-gray-500 text-black font-bold py-2 px-4 rounded" onclick="sendQuestion()">
                     Enviar pregunta
                 </button>
             </div>
@@ -124,6 +125,32 @@ def index():
                     <div class="wave"></div>
                     <div class="wave"></div>
                     <div class="wave"></div>
+                </div>
+            </div>
+            <div class="divide-y divide-dashed divide-gray-600 flex flex-col max-w-3xl p-4">
+                <div></div>
+                <div class="text-gray-600 ">
+                    <p class="my-4">
+                        "Gracias por utilizar nuestra aplicación que donde conectamos con la API de OpenAI para proporcionar respuestas a tus preguntas sobre documentos especificos previamente cargado. 
+                    </p>
+                    <p class="my-4">
+                        Aunque hemos trabajado arduamente para asegurarnos de que las respuestas sean lo más precisas posible, <b>es importante</b> tener en cuenta que aun se puede mejorar y que a veces las respuestas pueden no ser completamente exactas. Aun hay algunas optimizaciones y pruebas que se pueden realizar para mejorar la calidad de respuesta en diferentes situaciones, a veces puede haber ambigüedad o complejidad en las preguntas que hacen que las respuestas no sean del todo precisas. Por eso, siempre recomendamos leer y evaluar críticamente las respuestas que obtiene, y no tomarlas como una verdad absoluta.
+                    </p>
+                    <p class="my-4">
+                        Además, ten en cuenta que la inteligencia artificial no es infalible y que puede haber errores en las respuestas que proporciona. El plan es trabajar para mejorar nuestra aplicación y la precisión de las respuestas que proporcionamos, pero agradecemos tus comentarios y sugerencias para ayudarnos a seguir mejorando.
+                    </p>
+                    <p class="my-4">
+                        Si deseas una presentación mas personalizada para tu modelo de negocio contactanos y conversamos.
+                    </p>
+                    <p class="my-4">
+                        ¡Gracias por utilizar nuestra aplicación y esperamos que encuentres las respuestas que necesitas!"
+                    </p>
+
+                </div>
+                <div class="text-gray-600 ">
+                    <p class="my-4">
+                        Esto es demo creado por <b>Ponce.cloud</b> utilizando <b>OpenAI</b> aun no representa un proyecto 100% en producción.
+                    </p>
                 </div>
             </div>
         </div>
