@@ -129,9 +129,12 @@ def index():
         </div>
 
         <script>
+            document.getElementById("loading").hidden = true
+    
             function sendQuestion() {
                 document.getElementById("loading").hidden = false
                 document.getElementById("respuesta").hidden = true
+
                 var question = document.getElementById("question").value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
