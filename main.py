@@ -29,6 +29,65 @@ def index():
     <head>
         <title>Prueba piloto de integración con OpenAI para modelos de conocimiento personalizados.</title>
         <script src="https://cdn.tailwindcss.com"></script>
+            <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .wave {
+            width: 5px;
+            height: 20px;
+            background: linear-gradient(45deg, cyan, #fff);
+            margin: 10px;
+            animation: wave 1s linear infinite;
+            border-radius: 20px;
+        }
+        .wave:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+        .wave:nth-child(3) {
+            animation-delay: 0.2s;
+        }
+        .wave:nth-child(4) {
+            animation-delay: 0.3s;
+        }
+        .wave:nth-child(5) {
+            animation-delay: 0.4s;
+        }
+        .wave:nth-child(6) {
+            animation-delay: 0.5s;
+        }
+        .wave:nth-child(7) {
+            animation-delay: 0.6s;
+        }
+        .wave:nth-child(8) {
+            animation-delay: 0.7s;
+        }
+        .wave:nth-child(9) {
+            animation-delay: 0.8s;
+        }
+        .wave:nth-child(10) {
+            animation-delay: 0.9s;
+        }
+
+        @keyframes wave {
+            0% {
+                transform: scale(0);
+            }
+            50% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+    </style>
     </head>
     <body>
         <div class="bg-gray-950 min-h-screen flex flex-col justify-center items-center">
@@ -49,21 +108,37 @@ def index():
             </form>
             <div class="w-full max-w-3xl p-8 rounded-lg mt-8">
                 <p class="text-gray-100">Su respuesta Aqui:</p>
-                <div id="respuesta"></div>
+                <div id="respuesta" class="text-gray-100"></div>
+                <div id="loading" class="center">
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                    <div class="wave"></div>
+                </div>
             </div>
         </div>
 
         <script>
             function sendQuestion() {
+                document.getElementById("loading").hidden = false
+                document.getElementById("respuesta").hidden = true
                 var question = document.getElementById("question").value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("respuesta").hidden = false
+                        document.getElementById("loading").hidden = true
                         document.getElementById("respuesta").innerHTML = this.responseText;
                     }
                 };
                 xhttp.open("GET", "/answer?question=" + question, true);
-                xhttp.send();
+                xhttp.send(); 
             }
         </script>
     </body>
