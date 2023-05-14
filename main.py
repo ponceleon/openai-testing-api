@@ -91,6 +91,11 @@ def index():
     </head>
     <body>
         <div class="bg-gray-950 min-h-screen flex flex-col justify-center items-center">
+            <div class="flex items-center p-2">
+                <h1 class="inline-block text-2xl sm:text-3xl text-center font-extrabold text-gray-100 tracking-tight">Preguntame sobre la <br>
+                    <a href="https://www.funcionpublica.gov.co/eva/gestornormativo/norma_pdf.php?i=186812" target="_blank"> LEY 2208 DEL 17 DE MAYO DE 2022 </a>
+                </h1>
+            </div>
             <form class="w-full max-w-3xl bg-slate-800 p-8 rounded-lg">
             <div class="flex flex-wrap -mx-3 mb-6">
                 <div class="w-full px-3">
@@ -107,7 +112,6 @@ def index():
             </div>
             </form>
             <div class="w-full max-w-3xl p-8 rounded-lg mt-8">
-                <p class="text-gray-100">Su respuesta Aqui:</p>
                 <div id="respuesta" class="text-gray-100"></div>
                 <div id="loading" class="center">
                     <div class="wave"></div>
