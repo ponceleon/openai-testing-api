@@ -396,7 +396,7 @@ def answer_question(
     try:
         # Create a completions using the questin and context
         response = openai.Completion.create(
-            prompt=f"Answer the question based on the context below, and if the question can't be answered based on the context, say \"Lo siento mis respuestas esta limitada a mi base de conocimiento X previamente cargado, no allcanzo a identificar una posible respuesta a tu solicitud. te invito a contacatar a un agente de Atención al Cliente 100% humano.\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:", 
+            prompt=f"Answer the question based on the context below, and if the question can't be answered based on the context, say \"Lo siento mis respuestas esta limitadas a mi base de conocimiento sobre la LEY 2208 DEL 17 DE MAYO DE 2022 , disculpame si no puedo responderte o comprendo tu pregunta aun soy un modelos de aprendizaje en entrenamiento.\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:", 
             temperature=0,
             max_tokens=max_tokens,
             top_p=1,
