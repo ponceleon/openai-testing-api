@@ -131,7 +131,7 @@ def index():
                 <div></div>
                 <div class="text-gray-600 ">
                     <p class="my-4">
-                        "Gracias por utilizar nuestra aplicación que donde conectamos con la API de OpenAI para proporcionar respuestas a tus preguntas sobre documentos especificos previamente cargado. 
+                        Gracias por utilizar nuestra aplicación que donde conectamos con la API de OpenAI para proporcionar respuestas a tus preguntas sobre documentos especificos previamente cargado. 
                     </p>
                     <p class="my-4">
                         Aunque hemos trabajado arduamente para asegurarnos de que las respuestas sean lo más precisas posible, <b>es importante</b> tener en cuenta que aun se puede mejorar y que a veces las respuestas pueden no ser completamente exactas. Aun hay algunas optimizaciones y pruebas que se pueden realizar para mejorar la calidad de respuesta en diferentes situaciones, a veces puede haber ambigüedad o complejidad en las preguntas que hacen que las respuestas no sean del todo precisas. Por eso, siempre recomendamos leer y evaluar críticamente las respuestas que obtiene, y no tomarlas como una verdad absoluta.
@@ -143,7 +143,7 @@ def index():
                         Si deseas una presentación mas personalizada para tu modelo de negocio contactanos y conversamos.
                     </p>
                     <p class="my-4">
-                        ¡Gracias por utilizar nuestra aplicación y esperamos que encuentres las respuestas que necesitas!"
+                        ¡Gracias por utilizar nuestra aplicación y esperamos que encuentres las respuestas que necesitas!
                     </p>
 
                 </div>
@@ -159,13 +159,13 @@ def index():
             document.getElementById("loading").hidden = true
     
             function sendQuestion() {
-                document.getElementById("loading").hidden = false
+                document.getElementById("loading").hidden = true
 
                 var question = document.getElementById("question").value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("loading").hidden = true
+                        document.getElementById("loading").hidden = false
                         document.getElementById("respuesta").innerHTML = this.responseText;
                     }
                 };
