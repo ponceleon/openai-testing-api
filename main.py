@@ -103,7 +103,7 @@ def index():
                 <label class="block uppercase tracking-wide text-gray-100 text-xs font-bold mb-2" for="question">
                     Ingrese su pregunta:
                 </label>
-                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="question" type="text" placeholder="¿Que deseas preguntar?">
+                <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="question" type="text" placeholder="¿Que deseas preguntar?" onkeydown="checkEnter(event)">
                 </div>
             </div>
             <div class="flex justify-center">
@@ -173,6 +173,12 @@ def index():
                 xhttp.open("GET", "/answer?question=" + question, true);
                 xhttp.send(); 
             }
+            function checkEnter(event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault(); // Evitar que se envíe el formulario por defecto al presionar Enter
+                    sendQuestion(); // Llamar a la función sendQuestion() al presionar Enter
+                }
+            }
         </script>
     </body>
     </html>
@@ -187,7 +193,7 @@ if __name__ == '__main__':
 
 # Regex pattern to match a URL
 # Patrón Regex para coincidir con una URL
-HTTP_URL_PATTERN = r'^http[s]{0,1}://.+$'
+# HTTP_URL_PATTERN = r'^http[s]{0,1}://.+$'
 
 # Define root domain to crawl
 # Definir dominio raíz para rastrear
@@ -211,8 +217,8 @@ def remove_newlines(serie):
 ### Step 6
 ################################################################################
 
-# Create a list to store the text files
-# Crear una lista para almacenar los archivos de texto
+# # Create a list to store the text files
+# # Crear una lista para almacenar los archivos de texto
 texts=[]
 
 # Get all the text files in the text directory
@@ -245,14 +251,14 @@ df.head()
 # Cargue el tokenizador cl100k_base que está diseñado para funcionar con el modelo ada-002
 tokenizer = tiktoken.get_encoding("cl100k_base")
 
-df = pd.read_csv('processed/scraped.csv', index_col=0)
+# df = pd.read_csv('processed/scraped.csv', index_col=0)
 df.columns = ['title', 'text']
 
-# Tokenize the text and save the number of tokens to a new column
+# # Tokenize the text and save the number of tokens to a new column
 df['n_tokens'] = df.text.apply(lambda x: len(tokenizer.encode(x)))
 
-# Visualize the distribution of the number of tokens per row using a histogram
-# Tokenize el texto y guarde el número de tokens en una nueva columna
+# # Visualize the distribution of the number of tokens per row using a histogram
+# # Tokenize el texto y guarde el número de tokens en una nueva columna
 df.n_tokens.hist()
 
 ################################################################################
@@ -305,7 +311,7 @@ def split_into_many(text, max_tokens = max_tokens):
 shortened = []
 
 # Loop through the dataframe
-# Bucle a través del marco de datos
+# # Bucle a través del marco de datos
 for row in df.iterrows():
 
     # If the text is None, go to the next row
@@ -422,8 +428,14 @@ def answer_question(
     try:
         # Create a completions using the questin and context
         response = openai.Completion.create(
-            prompt=f"Answer the question based on the context below, and if the question can't be answered based on the context, say \"Lo siento mis respuestas esta limitadas a mi base de conocimiento sobre la LEY 2208 DEL 17 DE MAYO DE 2022 , disculpame si no puedo responderte o comprendo tu pregunta aun soy un modelos de aprendizaje en entrenamiento.\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:", 
-            temperature=0,
+            # prompt=f"Answer the question based on the context below, and if the question can't be answered based on the context, say \"Lo siento mis respuestas esta limitadas a mi base de conocimiento sobre la LEY 2208 DEL 17 DE MAYO DE 2022 , disculpame si no puedo responderte o comprendo tu pregunta aun soy un modelos de aprendizaje en entrenamiento.\"\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:", 
+
+            prompt=f"The main and most important thing is to answer about context issues, whether they are specific or general questions, you can greet and say goodbye with kindness in a creative way. But if the question is out of context, answer text similar to this example that I share here, you can change it \"Lo siento mis respuestas esta limitadas a mi base de conocimiento sobre la LEY 2208 DEL 17 DE MAYO DE 2022 , disculpame si no puedo responderte o comprendo tu pregunta aun soy un modelos de aprendizaje en entrenamiento. Podrias reformualrme tu pregunta, gracias.\"\n\nContext: {context}\n\n---\n\nQuestion: {question} \nAnswer:", 
+
+
+            # prompt=f"Answer the question based on the context below, and if the question can't be answered based on the context, feel free to provide a more general response or ask for clarification. Remember that my knowledge is based on the 'LEY 2208 DEL 17 DE MAYO DE 2022'. If I can't answer your question, I apologize for the limitation. I'm still a learning model.\n\nContext: {context}\n\n---\n\nQuestion: {question}\nAnswer:",
+
+            temperature=1,
             max_tokens=max_tokens,
             top_p=1,
             frequency_penalty=0,
