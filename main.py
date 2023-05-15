@@ -160,13 +160,11 @@ def index():
     
             function sendQuestion() {
                 document.getElementById("loading").hidden = false
-                document.getElementById("respuesta").hidden = true
 
                 var question = document.getElementById("question").value;
                 var xhttp = new XMLHttpRequest();
                 xhttp.onreadystatechange = function() {
                     if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("respuesta").hidden = false
                         document.getElementById("loading").hidden = true
                         document.getElementById("respuesta").innerHTML = this.responseText;
                     }
