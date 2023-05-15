@@ -107,7 +107,7 @@ def index():
                 </div>
             </div>
             <div class="flex justify-center">
-                <button class="bg-white hover:bg-gray-500 text-black font-bold py-2 px-4 rounded" onclick="sendQuestion()">
+                <button class="bg-white hover:bg-gray-500 text-black font-bold py-2 px-4 rounded" type="button" onclick="sendQuestion()">
                     Enviar pregunta
                 </button>
             </div>
